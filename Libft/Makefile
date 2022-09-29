@@ -9,6 +9,9 @@ FILES = ft_atoi.c ft_bzero.c ft_calloc.c \
 		ft_substr.c ft_strjoin.c ft_strtrim.c ft_split.c\
 		ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c \
 		ft_itoa.c 
+BONUS = ft_lstnew.c
+
+//BONUS_OBJS = $(BONUS:.c=.o)
 		
 CC = gcc 
 FLAGS = -Wall -Wextra -Werror
@@ -31,5 +34,8 @@ fclean : clean
 	$(RM) $(NAME)
 
 re : fclean all
+
+bonus: $(BONUS_OBJS)
+	@ar rcs $(NAME) $(BONUS_OBJS)
 
 .PHONY: all clean fclean re
