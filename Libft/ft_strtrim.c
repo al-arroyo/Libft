@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alarroyo <alarroyo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alvaro <alvaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 12:49:25 by alarroyo          #+#    #+#             */
-/*   Updated: 2022/09/25 21:08:28 by alarroyo         ###   ########.fr       */
+/*   Updated: 2022/09/30 20:47:43 by alvaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static char	*ft_last_cut(char *s1, char const *set)
 	i = ft_strlen(s1) - 1;
 	j = ft_strlen(s1) - 1;
 	z = ft_strlen(set);
-	while (i >= 0 && z-- >= 0)
+	while (i-- >= 0 && z-- >= 0)
 	{
 		x = 0;
 		while (set[x] != 0)
@@ -64,7 +64,6 @@ static char	*ft_last_cut(char *s1, char const *set)
 			}
 			x++;
 		}
-		i--;
 	}
 	return (str);
 }
