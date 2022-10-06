@@ -3,57 +3,81 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alarroyo <alarroyo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alvaro <alvaro@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 14:58:53 by alarroyo          #+#    #+#             */
-/*   Updated: 2022/09/25 16:30:35 by alarroyo         ###   ########.fr       */
+/*   Updated: 2022/10/06 11:40:16 by alvaro           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char	**matrix(char const *s)
+static int	count_words(char const *s, char c)
 {
-	char	**aux;
-	size_t	i;
+	int	i;
+	int	words;
 
 	i = 0;
-	aux = (char **) malloc(ft_strlen(s) * sizeof(char *));
-	while (i < ft_strlen(s))
+	words = 0;
+	while (s && s[i])
 	{
-		aux[i] = (char *) malloc(ft_strlen(s) * sizeof(char));
-		i++;
+		if (s[i] != c)
+		{
+			words++;
+			while (s[i] != c && s[i])
+				i++;
+		}
+		else
+			i++;
 	}
-	ft_bzero(aux, ft_strlen(*aux));
-	return (aux);
+	return (words);
 }
 
-static char	**split(char const *s, char c)
+static int	size_word(char const *s, char c, int i)
 {
-	char	**ret;
-	int		i;
-	int		j;
+	int	size;
 
-	ret = matrix(s);
-	i = 0;
-	j = 0;
-	while (s[j])
+	size = 0;
+	while (s[i] != c && s[i])
 	{
-		if (s[j] == c)
-		{
-			i++;
-			j++;
-		}
-		ret[i][j] = s[j];
-		j++;
+		size++;
+		i++;
 	}
-	ret[i][j] = 0;
-	return (ret);
+	return (size);
+}
+
+static void	ft_free(char **strs, int j)
+{
+	while (j-- > 0)
+		free(strs[j]);
+	free(strs);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	if (!s)
+	int		i;
+	int		word;
+	char	**strs;
+	int		size;
+	int		j;
+
+	i = 0;
+	j = 0;
+	word = count_words(s, c);
+	if (!(strs = (char **)malloc((word + 1) * sizeof(char *))))
 		return (NULL);
-	return (split(s, c));
+	while (j++ < word)
+	{
+		while (s[i] == c)
+			i++;
+		size = size_word(s, c, i);
+		if (!(strs[j] = ft_substr(s, i, size)))
+		{
+			ft_free(strs, j);
+			return (NULL);
+		}
+		i += size;
+	}
+	strs[j] = 0;
+	return (strs);
 }
