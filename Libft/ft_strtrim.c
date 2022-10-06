@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alvaro <alvaro@student.42.fr>              +#+  +:+       +#+        */
+/*   By: alarroyo <alarroyo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 12:49:25 by alarroyo          #+#    #+#             */
-/*   Updated: 2022/10/05 11:58:23 by alvaro           ###   ########.fr       */
+/*   Updated: 2022/10/06 18:52:17 by alarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	start(char *s1, char const *set)
+static int	start(char const *s1, char const *set)
 {
 	size_t	i;
 	size_t	len;
@@ -24,7 +24,7 @@ static int	start(char *s1, char const *set)
 	return (i);
 }
 
-static int	end(char *s1, char const *set)
+static int	end(char const *s1, char const *set)
 {
 	size_t	len;
 	size_t	j;
@@ -53,6 +53,6 @@ char	*ft_strtrim(char const *s1, char const *set)
 	aux = ft_calloc(sizeof(char *), j - i + 1);
 	if (!aux)
 		return (NULL);
-	ft_strlcpy(aux, s1 + i, j - i + 1);
+	ft_strlcpy(aux, (char *)(s1 + i), j - i + 1);
 	return (aux);
 }
