@@ -6,7 +6,7 @@
 /*   By: alarroyo <alarroyo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 13:33:35 by alarroyo          #+#    #+#             */
-/*   Updated: 2022/10/09 16:02:56 by alarroyo         ###   ########.fr       */
+/*   Updated: 2022/10/09 19:25:59 by alarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
  * 
  * @return The number of characters in the string.
  */
-int	ft_atoi(char *str)
+int	ft_atoi(const char *str)
 {
 	int	s;
 	int	r;
