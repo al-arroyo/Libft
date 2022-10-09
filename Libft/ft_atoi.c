@@ -6,12 +6,19 @@
 /*   By: alarroyo <alarroyo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 13:33:35 by alarroyo          #+#    #+#             */
-/*   Updated: 2022/09/16 12:36:29 by alarroyo         ###   ########.fr       */
+/*   Updated: 2022/10/09 16:02:56 by alarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/**
+ * It takes a string and returns an integer
+ * 
+ * @param str The string to be converted.
+ * 
+ * @return The number of characters in the string.
+ */
 int	ft_atoi(char *str)
 {
 	int	s;

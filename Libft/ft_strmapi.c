@@ -6,25 +6,40 @@
 /*   By: alarroyo <alarroyo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 19:12:20 by alarroyo          #+#    #+#             */
-/*   Updated: 2022/10/06 19:25:14 by alarroyo         ###   ########.fr       */
+/*   Updated: 2022/10/09 15:52:05 by alarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/**
+ * Ft_strmapi() applies the function f to each character 
+ * of the string passed as argument by giving its
+ * index as first argument to create a "fresh" new string 
+ * (with malloc(3)) resulting from the
+ * successive applications of f.
+ * 
+ * @param s The string to be iterated over.
+ * @param f The function to be applied to each character of s and its index.
+ * 
+ * @return A pointer to a new string.
+ */
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
 	char	*str;
 	int		i;
 
-	str = ft_calloc(sizeof(char *), ft_strlen(s));
-	i = 0;
+	if (!s || !f)
+		return (NULL);
+	str = malloc(sizeof(char) * (ft_strlen(s) + 1));
 	if (!str)
 		return (NULL);
+	i = 0;
 	while (s[i])
 	{
-		str[i] = f(ft_strlen(s), str[i]);
+		str[i] = f(i, s[i]);
 		i++;
 	}
+	str[i] = '\0';
 	return (str);
 }

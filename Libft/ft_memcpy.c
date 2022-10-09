@@ -6,13 +6,13 @@
 /*   By: alarroyo <alarroyo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 12:59:16 by alarroyo          #+#    #+#             */
-/*   Updated: 2022/09/25 12:54:00 by alarroyo         ###   ########.fr       */
+/*   Updated: 2022/10/09 16:11:04 by alarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy(void *dest, void *src, size_t n)
+void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
 	char	*a;
 	char	*b;

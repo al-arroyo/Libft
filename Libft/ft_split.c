@@ -6,12 +6,20 @@
 /*   By: alarroyo <alarroyo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 14:58:53 by alarroyo          #+#    #+#             */
-/*   Updated: 2022/10/06 19:03:07 by alarroyo         ###   ########.fr       */
+/*   Updated: 2022/10/09 17:58:24 by alarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/**
+ * It counts the number of words in a string
+ * 
+ * @param s the string to be split
+ * @param c the delimiter
+ * 
+ * @return The number of words in the string.
+ */
 static int	count_words(char const *s, char c)
 {
 	int	i;
@@ -19,92 +27,113 @@ static int	count_words(char const *s, char c)
 
 	i = 0;
 	words = 0;
-	while (s && s[i])
+	while (s[i] != 0)
 	{
-		if (s[i] != c)
-		{
+		if ((s[i + 1] == c || s[i + 1] == '\0') == 1
+			&& (s[i] == c || s[i] == '\0') == 0)
 			words++;
-			while (s[i] != c && s[i])
-				i++;
-		}
-		else
-			i++;
+		i++;
 	}
 	return (words);
 }
 
-static int	size_word(char const *s, char c, int i)
+/**
+ * It copies a word from a string into a new string
+ * 
+ * @param d destination
+ * @param s The string to be split.
+ * @param c the character to split on
+ */
+static void	write_word(char *d, const char *s, char c)
 {
-	int	size;
-
-	size = 0;
-	while (s[i] != c && s[i])
-	{
-		size++;
-		i++;
-	}
-	return (size);
-}
-
-static void	ft_free(char **strs, int j)
-{
-	while (j-- > 0)
-		free(strs[j]);
-	free(strs);
-}
-
-static char	**matrix(void)
-{
-	char	**ret;
-	int		count;
-	int		count_row;
-
-	count = 0;
-	ret = (char **) malloc(1000 * sizeof(char *));
-	while (count < 1000)
-	{
-		ret[count] = (char *) malloc(1000 * sizeof(char));
-		count++;
-	}
-	count = 0;
-	count_row = 0;
-	while (count < 1000)
-	{
-		while (count_row < 1000)
-		{
-			ret[count][count_row] = '\0';
-			count_row++;
-		}
-		count_row = 0;
-		count++;
-	}
-	return (ret);
-}
-
-char	**ft_split(char const *s, char c)
-{
-	int		i;
-	char	**strs;
-	int		size;
-	int		j;
+	int	i;
 
 	i = 0;
-	j = 0;
-	size = 0;
-	strs = matrix();
-	while (j++ < count_words(s, c))
+	while ((s[i] == c || s[i] == '\0') == 0)
 	{
-		while (s[i] == c)
-			i++;
-		size = size_word(s, c, i);
-		strs[j] = ft_substr(s, i, size);
-		if (!strs[j])
-		{
-			ft_free(strs, j);
-			return (NULL);
-		}
-		i += size;
+		d[i] = s[i];
+		i++;
 	}
-	strs[j] = 0;
-	return (strs);
+	d[i] = '\0';
+}
+
+/**
+ * It frees the memory allocated to the 2D array 
+ * of strings, and returns -1
+ * 
+ * @param aux the array of strings that will be used 
+ * 				to store the lines of the file
+ * @param j the number of lines in the file
+ * 
+ * @return the value of j.
+ */
+static int	ft_free(char **aux, int j)
+{
+	while (j-- > 0)
+		free(aux[j]);
+	return (-1);
+}
+
+/**
+ * It counts the number of words in the string, 
+ * allocates memory for the matrix, and then writes the
+ * words into the matrix
+ * 
+ * @param matrix the matrix that will be returned
+ * @param s The string to be split.
+ * @param c the delimiter
+ * 
+ * @return The number of words in the string.
+ */
+static int	write_split(char **matrix, const char *s, char c)
+{
+	int		i;
+	int		j;
+	int		word;
+
+	word = 0;
+	i = 0;
+	while (s[i] != '\0')
+	{
+		if ((s[i] == c || s[i] == '\0') == 1)
+			i++;
+		else
+		{
+			j = 0;
+			while ((s[i + j] == c || s[i + j] == '\0') == 0)
+				j++;
+			matrix[word] = (char *)malloc(sizeof(char) * (j + 1));
+			if (matrix[word] == NULL)
+				return (ft_free(matrix, word - 1));
+			write_word(matrix[word], s + i, c);
+			i += j;
+			word++;
+		}
+	}
+	return (0);
+}
+
+/**
+ * It counts the number of words in the string, 
+ * allocates memory for the array of strings, and then
+ * writes the strings into the array
+ * 
+ * @param s The string to be split.
+ * @param c the character to split the string by
+ * 
+ * @return A pointer to a pointer to a char.
+ */
+char	**ft_split(const char *s, char c)
+{
+	char	**aux;
+	int		words;
+
+	words = count_words(s, c);
+	aux = (char **)malloc(sizeof(char *) * (words + 1));
+	if (aux == NULL)
+		return (NULL);
+	aux[words] = 0;
+	if (write_split(aux, s, c) == -1)
+		return (NULL);
+	return (aux);
 }

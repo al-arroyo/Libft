@@ -6,53 +6,35 @@
 /*   By: alarroyo <alarroyo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 12:49:25 by alarroyo          #+#    #+#             */
-/*   Updated: 2022/10/06 18:52:17 by alarroyo         ###   ########.fr       */
+/*   Updated: 2022/10/09 18:49:20 by alarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	start(char const *s1, char const *set)
-{
-	size_t	i;
-	size_t	len;
-
-	len = ft_strlen(s1);
-	i = 0;
-	while (ft_strchr(set, s1[i]) != 0)
-		i ++;
-	return (i);
-}
-
-static int	end(char const *s1, char const *set)
-{
-	size_t	len;
-	size_t	j;
-
-	len = ft_strlen(s1);
-	j = 0;
-	while (ft_strchr(set, s1[len - j - 1]) != 0)
-		j++;
-	return (len - j);
-}
-
+/**
+ * It returns a copy of the string given as argument without
+ * whitespaces at the beginning or at the end
+ * of the string. Whitespaces considered for the trim are 
+ * the following: spaces, tabs and newlines
+ * 
+ * @param s1 The string to be trimmed.
+ * @param set The characters to be trimmed.
+ * 
+ * @return A pointer to a new string.
+ */
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	int		i;
-	int		j;
-	char	*aux;
+	size_t		size_s;
+	char		*aux;
 
-	if (!s1)
+	if (!s1 || !set)
 		return (NULL);
-	if (!set)
-		return (ft_strdup(s1));
-	i = start(s1, set);
-	j = end(s1, set);
-	if (i >= j)
-		return (ft_strdup(""));
-	aux = ft_calloc(sizeof(char *), j - i + 1);
-	if (!aux)
-		return (NULL);
-	ft_strlcpy(aux, (char *)(s1 + i), j - i + 1);
+	while (*s1 && ft_strchr(set, *s1))
+		s1++;
+	size_s = ft_strlen(s1);
+	while (size_s && ft_strchr(set, s1[size_s]))
+		size_s--;
+	aux = ft_substr((char *)s1, 0, size_s + 1);
 	return (aux);
 }
