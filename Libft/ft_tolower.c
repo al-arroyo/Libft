@@ -6,12 +6,19 @@
 /*   By: alarroyo <alarroyo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 13:32:14 by alarroyo          #+#    #+#             */
-/*   Updated: 2022/09/16 12:27:08 by alarroyo         ###   ########.fr       */
+/*   Updated: 2022/10/12 13:05:26 by alarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/**
+ * If the character is uppercase, convert it to lowercase
+ * 
+ * @param c The character to be converted.
+ * 
+ * @return the lowercase version of the character passed as argument.
+ */
 int	ft_tolower(int c)
 {
 	char	aux;

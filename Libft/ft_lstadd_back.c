@@ -1,26 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalpha.c                                       :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alarroyo <alarroyo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/09 18:54:01 by alarroyo          #+#    #+#             */
-/*   Updated: 2022/10/12 12:56:57 by alarroyo         ###   ########.fr       */
+/*   Created: 2022/10/12 11:40:24 by alarroyo          #+#    #+#             */
+/*   Updated: 2022/10/12 11:49:28 by alarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 /**
- * If the character is between 'A' and 'Z' 
- * or between 'a' and 'z', return 1, otherwise return 0
+ * It adds a new element to the end of a list
  * 
- * @param c The character to be checked.
- * 
- * @return 1 if the character is alphabetic, 0 otherwise.
+ * @param lst A pointer to the first link of a list.
+ * @param new The new element to add to the list.
  */
-int	ft_isalpha(int c)
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	return ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'));
+	t_list	*last;
+
+	if (lst && new)
+	{
+		last = ft_lstlast(*lst);
+		if (last)
+			last->next = new;
+		else
+			*lst = new;
+	}
 }

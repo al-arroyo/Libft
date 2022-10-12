@@ -6,12 +6,20 @@
 /*   By: alarroyo <alarroyo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 11:48:32 by alarroyo          #+#    #+#             */
-/*   Updated: 2022/09/23 12:08:10 by alarroyo         ###   ########.fr       */
+/*   Updated: 2022/10/12 13:03:01 by alarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/**
+ * It takes two strings and joins them together.
+ * 
+ * @param s1 The first string to be joined.
+ * @param s2 The string to be appended to the end of s1.
+ * 
+ * @return A pointer to a string.
+ */
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*str;

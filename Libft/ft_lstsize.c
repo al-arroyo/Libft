@@ -1,26 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalpha.c                                       :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alarroyo <alarroyo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/09 18:54:01 by alarroyo          #+#    #+#             */
-/*   Updated: 2022/10/12 12:56:57 by alarroyo         ###   ########.fr       */
+/*   Created: 2022/10/12 10:58:51 by alarroyo          #+#    #+#             */
+/*   Updated: 2022/10/12 11:38:46 by alarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 /**
- * If the character is between 'A' and 'Z' 
- * or between 'a' and 'z', return 1, otherwise return 0
+ * It returns the number of elements in a linked list
  * 
- * @param c The character to be checked.
+ * @param lst A pointer to the first element of a linked list.
  * 
- * @return 1 if the character is alphabetic, 0 otherwise.
+ * @return The size of the list.
  */
-int	ft_isalpha(int c)
+int	ft_lstsize(t_list *lst)
 {
-	return ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'));
+	int	size;
+
+	size = 0;
+	while (lst)
+	{
+		lst = lst->next;
+		size++;
+	}
+	return (size);
 }

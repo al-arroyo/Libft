@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalpha.c                                       :+:      :+:    :+:   */
+/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alarroyo <alarroyo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/09 18:54:01 by alarroyo          #+#    #+#             */
-/*   Updated: 2022/10/12 12:56:57 by alarroyo         ###   ########.fr       */
+/*   Created: 2022/10/12 11:50:31 by alarroyo          #+#    #+#             */
+/*   Updated: 2022/10/12 11:52:45 by alarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 /**
- * If the character is between 'A' and 'Z' 
- * or between 'a' and 'z', return 1, otherwise return 0
+ * Delete the content of a list and free the list
  * 
- * @param c The character to be checked.
- * 
- * @return 1 if the character is alphabetic, 0 otherwise.
+ * @param lst The address of a pointer to a link.
+ * @param del a function that takes in a void pointer and returns nothing.
  */
-int	ft_isalpha(int c)
+void	ft_lstdelone(t_list *lst, void (*del)(void*))
 {
-	return ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'));
+	del(lst->content);
+	free(lst);
 }

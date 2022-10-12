@@ -6,12 +6,22 @@
 /*   By: alarroyo <alarroyo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 13:06:33 by alarroyo          #+#    #+#             */
-/*   Updated: 2022/09/23 11:05:29 by alarroyo         ###   ########.fr       */
+/*   Updated: 2022/10/12 13:03:14 by alarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/**
+ * It copies the string src to the end of dest, but only if 
+ * there's enough space in dest
+ * 
+ * @param dest This is the destination string.
+ * @param src The string to be appended.
+ * @param dstsize The size of the destination buffer.
+ * 
+ * @return The length of the string it tried to create in dest.
+ */
 size_t	ft_strlcat(char *dest, char const *src, size_t dstsize)
 {
 	size_t	i;

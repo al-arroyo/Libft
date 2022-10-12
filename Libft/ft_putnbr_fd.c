@@ -6,17 +6,31 @@
 /*   By: alarroyo <alarroyo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 14:41:05 by alarroyo          #+#    #+#             */
-/*   Updated: 2022/09/25 12:10:46 by alarroyo         ###   ########.fr       */
+/*   Updated: 2022/10/12 13:01:39 by alarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/**
+ * Ft_putchar() writes a single character to the file descriptor fd
+ * 
+ * @param c the character to print
+ * @param fd file descriptor
+ */
 static void	ft_putchar(char c, int fd)
 {
 	write(fd, &c, 1);
 }
 
+/**
+ * It prints the number n to the file descriptor fd.
+ * 
+ * @param n the number to print
+ * @param fd The file descriptor of the file to write to.
+ * 
+ * @return the number of characters printed.
+ */
 void	ft_putnbr_fd(int n, int fd)
 {
 	int	min;

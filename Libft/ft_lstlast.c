@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalpha.c                                       :+:      :+:    :+:   */
+/*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alarroyo <alarroyo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/09 18:54:01 by alarroyo          #+#    #+#             */
-/*   Updated: 2022/10/12 12:56:57 by alarroyo         ###   ########.fr       */
+/*   Created: 2022/10/12 11:22:01 by alarroyo          #+#    #+#             */
+/*   Updated: 2022/10/12 11:38:51 by alarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 /**
- * If the character is between 'A' and 'Z' 
- * or between 'a' and 'z', return 1, otherwise return 0
+ * It returns the last element of a list.
  * 
- * @param c The character to be checked.
+ * @param lst The list to be searched.
  * 
- * @return 1 if the character is alphabetic, 0 otherwise.
+ * @return The last element of the list.
  */
-int	ft_isalpha(int c)
+t_list	*ft_lstlast(t_list *lst)
 {
-	return ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'));
+	while (lst)
+	{
+		if (!lst->next)
+			return (lst);
+		lst = lst->next;
+	}
+	return (0);
 }
