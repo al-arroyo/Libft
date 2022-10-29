@@ -6,7 +6,7 @@
 /*   By: alarroyo <alarroyo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 13:06:33 by alarroyo          #+#    #+#             */
-/*   Updated: 2022/10/12 13:03:14 by alarroyo         ###   ########.fr       */
+/*   Updated: 2022/10/29 15:55:44 by alarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ size_t	ft_strlcat(char *dest, char const *src, size_t dstsize)
 	i = 0;
 	j = 0;
 	size_src = ft_strlen(src);
+	if (dstsize == 0)
+		return (size_src);
 	while (dest[i] != 0 && i < dstsize)
 		i++;
 	while (src[j] != '\0' && (j + i + 1) < dstsize)

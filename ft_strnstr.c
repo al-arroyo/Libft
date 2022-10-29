@@ -6,7 +6,7 @@
 /*   By: alarroyo <alarroyo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 13:11:54 by alarroyo          #+#    #+#             */
-/*   Updated: 2022/10/09 16:19:43 by alarroyo         ###   ########.fr       */
+/*   Updated: 2022/10/29 15:59:46 by alarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ char	*ft_strnstr(const char *str, const char *to_find, size_t n)
 	i = 0;
 	if (to_find[i] == '\0')
 		return ((char *)str);
+	if (n == 0)
+		return (0);
 	while (str[i] != '\0' && i < n)
 	{
 		j = 0;
