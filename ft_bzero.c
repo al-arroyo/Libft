@@ -6,7 +6,7 @@
 /*   By: alarroyo <alarroyo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 13:20:10 by alarroyo          #+#    #+#             */
-/*   Updated: 2022/10/12 12:52:18 by alarroyo         ###   ########.fr       */
+/*   Updated: 2022/10/29 13:34:10 by alarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,12 @@
  */
 void	ft_bzero(void *s, size_t n)
 {
-	char	*aux;
+	size_t	i;
 
-	aux = (char *)s;
-	if (n != 0)
+	i = 0;
+	while (i < n)
 	{
-		while (n != 0)
-		{
-			*aux = '\0';
-			aux++;
-			n--;
-		}
-		s = aux;
+		((char *)s)[i] = 0;
+		i++;
 	}
 }

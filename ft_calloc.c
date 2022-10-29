@@ -6,7 +6,7 @@
 /*   By: alarroyo <alarroyo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 13:41:50 by alarroyo          #+#    #+#             */
-/*   Updated: 2022/10/12 12:56:27 by alarroyo         ###   ########.fr       */
+/*   Updated: 2022/10/29 13:48:41 by alarroyo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@
  */
 void	*ft_calloc(size_t nmemb, size_t size)
 {
-	char	*ret;
+	void	*ret;
 
-	ret = (char *) malloc(nmemb * size);
+	ret = (void *) malloc(nmemb * size);
 	if (!ret)
-		return (0);
-	ft_bzero(ret, size * nmemb);
-	return ((void *)ret);
+		return (NULL);
+	ft_bzero(ret, nmemb * size);
+	return (ret);
 }
